@@ -1,61 +1,12 @@
-// import {useState} from 'react';
-// import axios from 'axios';
-
-// const App = () => {
-//   const [data, setData] = useState({data: []});
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [err, setErr] = useState('');
-
-//   const handleClick = async () => {
-//     setIsLoading(true);
-//     try {
-//       const {data} = await axios.get('http://localhost:3000/tasks', {
-//         headers: {
-//           Accept: 'application/json',
-//         },
-//       });
-
-//       console.log('data is: ', JSON.stringify(data, null, 4));
-
-//       setData(data);
-//     } catch (err) {
-//       setErr(err.message);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   console.log(data);
-
-//   return (
-//     <div>
-//       {err && <h2>{err}</h2>}
-
-//       <button onClick={handleClick}>Fetch data</button>
-
-//       {isLoading && <h2>Loading...</h2>}
-
-//       {data.data.tasks.map(task => {
-//         return (
-//           <div key={task.id}>
-//             <h2>{task.name}</h2>
-//             <br />
-//           </div>
-//         );
-//       })}
-//       <p>{ JSON.stringify(data) }</p>
-//     </div>
-//   );
-// };
-
-// export default App;
-
-// mycomponent.js
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import Task from './Components/Task.js'
+import FrenchiePicture from './Components/FrenchiePicture.js'
 
-const MyComponent = () => {
-  const [loading, setLoading] = useState(true);
+function App() {
+
+  const [picture, setPicture] = useState([])
+  const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -63,6 +14,8 @@ const MyComponent = () => {
       setLoading(true);
       try {
         const {data: response} = await axios.get('http://localhost:3000/tasks');
+        const picFromDogAPI = await getPicture()
+        setPicture(picFromDogAPI)
         console.log(data);
         setData(response);
       } catch (error) {
@@ -72,9 +25,19 @@ const MyComponent = () => {
     }
 
     fetchData();
+    
   }, []);
 
-  return (
+  const getPicture = async () => {
+    const res = await fetch('https://dog.ceo/api/breed/bulldog/french/images/random', {
+        method: 'GET'
+    })
+    const data = await res.json()
+    console.log(data.message)
+    return data.message
+  }
+
+ return (
     <div>
     {loading && <div>Loading</div>}
     {!loading && (
@@ -85,8 +48,8 @@ const MyComponent = () => {
           {task.id}. {task.name}, Doses Requred: {task.doses_required}. Doses Given: {task.doses_given}</p>))}
       </div>
     )}
+    <FrenchiePicture picture={picture} />
     </div>
-  )
-}
+  )  
 
-export default MyComponent;
+export default App;
