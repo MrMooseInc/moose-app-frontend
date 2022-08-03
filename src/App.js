@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Task from './Components/Task.js'
+import FrenchiePicture from './Components/FrenchiePicture.js'
+import { useState, useEffect } from 'react'
 
 function App() {
+
+  const [picture, setPicture] = useState([])
+
+  useEffect(()=> {
+    const getPic = async () => {
+      const picFromDogAPI = await getPicture()
+      setPicture(picFromDogAPI)
+    }
+    getPic()
+  }, [])
+
+  const getPicture = async () => {
+    const res = await fetch('https://dog.ceo/api/breed/bulldog/french/images/random', {
+        method: 'GET'
+    })
+    const data = await res.json()
+    console.log(data.message)
+    return data.message
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <div className='header'>
+        <Task />
+        <FrenchiePicture picture={picture} />
+      </div>
+    
   );
 }
 
