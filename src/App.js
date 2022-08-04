@@ -51,5 +51,5 @@ function App() {
     <FrenchiePicture picture={picture} />
     </div>
   )  
-
+}
 export default App;
