@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
-import Task from './Components/Task.js'
+import Tasks from './Components/Tasks.js'
 import FrenchiePicture from './Components/FrenchiePicture.js'
 
 function App() {
@@ -43,13 +43,12 @@ function App() {
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        
-        {data.map(task => (<p key={task.id}>
-          {task.id}. {task.name}, Doses Requred: {task.doses_required}. Doses Given: {task.doses_given}</p>))}
+        <Tasks data={data} />
       </div>
     )}
     <FrenchiePicture picture={picture} />
     </div>
-  )  
-}
+  )
+        }
+
 export default App;
