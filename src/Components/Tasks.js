@@ -1,10 +1,10 @@
 import Task from "./Task.js";
 
-const Tasks = ({ data }) => {
+const Tasks = ({ data, onAddDose }) => {
   return (
     <>
       {data.map((task) => (
-        <Task task={task} />
+        <Task task={task} onAddDose={onAddDose} />
       ))}
     </>
   );
