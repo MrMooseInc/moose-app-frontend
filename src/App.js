@@ -60,13 +60,28 @@ const addDose = async (id) => {
 
 }
 
+const removeDose = async (id) => {
+  const res = await fetch(`http://localhost:3000/tasks/${id}/remove_dose`, {
+    method: 'DELETE'
+    })
+  
+    const dose_data = await res.json()
+    console.log("Dose Removed: ", dose_data.task.doses_given)
+
+    setData(
+      data.map((task) => 
+        task.id === id ? {...task, doses_given: dose_data.task.doses_given } : task
+      )
+    )
+}
+
  return (
     <div>
     {loading && <div>Loading</div>}
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        <Tasks data={data} onAddDose={addDose}/>
+        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose}/>
       </div>
     )}
     <FrenchiePicture picture={picture} />
