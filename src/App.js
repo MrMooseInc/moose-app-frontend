@@ -62,6 +62,7 @@ const addDose = async (id) => {
 
 }
 
+
 const removeDose = async (id) => {
   const res = await fetch(`${URL}/tasks/${id}/remove_dose`, {
     method: 'DELETE'
@@ -77,13 +78,14 @@ const removeDose = async (id) => {
     )
 }
 
+
  return (
     <div>
     {loading && <div>Loading</div>}
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose}/>
+        <Tasks data={data} onAddDose={addDose}/>
       </div>
     )}
     <FrenchiePicture picture={picture} />
