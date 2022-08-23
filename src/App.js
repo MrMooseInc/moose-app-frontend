@@ -4,18 +4,20 @@ import Tasks from './Components/Tasks.js'
 import FrenchiePicture from './Components/FrenchiePicture.js'
 import Task from './Components/Task.js';
 
+
 function App() {
 
   const [picture, setPicture] = useState([])
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
+  const URL = process.env.REACT_APP_REST_URL
 
 
   useEffect(() => {
     const fetchData = async () =>{
       setLoading(true);
       try {
-        const {data: response} = await axios.get('http://localhost:3000/tasks');
+        const {data: response} = await axios.get(`${URL}/tasks`);
         const picFromDogAPI = await getPicture()
         setPicture(picFromDogAPI)
         console.log(data);
@@ -40,7 +42,7 @@ function App() {
   }
 
 const addDose = async (id) => {
-  const res = await fetch(`http://localhost:3000/tasks/${id}/add_dose`, {
+  const res = await fetch(`${URL}/tasks/${id}/add_dose`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
@@ -61,7 +63,7 @@ const addDose = async (id) => {
 }
 
 const removeDose = async (id) => {
-  const res = await fetch(`http://localhost:3000/tasks/${id}/remove_dose`, {
+  const res = await fetch(`${URL}/tasks/${id}/remove_dose`, {
     method: 'DELETE'
     })
   
