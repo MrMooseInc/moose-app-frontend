@@ -4,14 +4,12 @@ import Tasks from './Components/Tasks.js'
 import FrenchiePicture from './Components/FrenchiePicture.js'
 import Task from './Components/Task.js';
 
-
 function App() {
 
   const [picture, setPicture] = useState([])
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
   const URL = process.env.REACT_APP_REST_URL
-
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -27,9 +25,7 @@ function App() {
       }
       setLoading(false);
     }
-
     fetchData();
-    
   }, []);
 
   const getPicture = async () => {
@@ -41,45 +37,40 @@ function App() {
     return data.message
   }
 
-const addDose = async (id) => {
-  const res = await fetch(`${URL}/tasks/${id}/add_dose`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(Task),
-  })
-
-  const dose_data = await res.json()
-  console.log("Dose added:", dose_data.task.doses_given)
-
-  // setData([...data, dose_data])
-  setData(
-    data.map((task) =>
-      task.id === id ? { ...task, doses_given: dose_data.task.doses_given } : task
-    )
-  )
-
-}
-
-
-const removeDose = async (id) => {
-  const res = await fetch(`${URL}/tasks/${id}/remove_dose`, {
-    method: 'DELETE'
+  const addDose = async (id) => {
+    const res = await fetch(`${URL}/tasks/${id}/add_dose`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(Task),
     })
-  
+
     const dose_data = await res.json()
-    console.log("Dose Removed: ", dose_data.task.doses_given)
-
-    setData(
-      data.map((task) => 
-        task.id === id ? {...task, doses_given: dose_data.task.doses_given } : task
-      )
+    console.log("Dose added:", dose_data.task.doses_given)
+    
+    setData(data.map((task) =>
+        task.id === id ? { ...task, doses_given: dose_data.task.doses_given } : task
+      ),
     )
-}
+  }
 
+  const removeDose = async (id) => {
+    const res = await fetch(`${URL}/tasks/${id}/remove_dose`, {
+      method: 'DELETE'
+      })
+    
+      const dose_data = await res.json()
+      console.log("Dose Removed: ", dose_data.task.doses_given)
 
- return (
+      setData(
+        data.map((task) => 
+          task.id === id ? {...task, doses_given: dose_data.task.doses_given } : task
+        )
+      )
+  }
+
+  return (
     <div>
     {loading && <div>Loading</div>}
     {!loading && (
@@ -91,6 +82,6 @@ const removeDose = async (id) => {
     <FrenchiePicture picture={picture} />
     </div>
   )
-        }
+}
 
 export default App;
