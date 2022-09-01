@@ -76,7 +76,7 @@ function App() {
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        <Tasks data={data} onAddDose={addDose}/>
+        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose}/>
       </div>
     )}
     <FrenchiePicture picture={picture} />
