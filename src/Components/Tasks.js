@@ -1,14 +1,14 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Task from "./Task.js";
 
-const Tasks = ({ data, onAddDose, onRemoveDose }) => {
+const Tasks = ({ data, onAddDose, onRemoveDose, onDeleteTask }) => {
   return (
     <Container>
       {data.map((task) => (
         <>
-        <Task task={task} onAddDose={onAddDose} onRemoveDose={onRemoveDose} />
-        <br/>
+          <Task task={task} onAddDose={onAddDose} onRemoveDose={onRemoveDose} onDeleteTask={onDeleteTask} />
+          <br />
         </>
       ))}
     </Container>
