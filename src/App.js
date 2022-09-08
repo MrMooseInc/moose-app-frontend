@@ -70,13 +70,26 @@ function App() {
       )
   }
 
+  const deleteTask = async (id) => {
+    const res = await fetch(`${URL}/tasks/${id}/`, {
+      method: 'DELETE'
+    })
+    setData(
+      data.filter((task) => task.id !== id
+      )
+    )
+    const tasks = await res.json()
+    console.log("Here's the tasks array:", tasks);
+
+  }
+
   return (
     <div>
     {loading && <div>Loading</div>}
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose}/>
+        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>
       </div>
     )}
     <FrenchiePicture picture={picture} />
