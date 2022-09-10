@@ -3,6 +3,7 @@ import axios from 'axios';
 import Tasks from './Components/Tasks.js'
 import FrenchiePicture from './Components/FrenchiePicture.js'
 import Task from './Components/Task.js';
+import AddTask from './Components/AddTask.js';
 
 function App() {
 
@@ -89,6 +90,7 @@ function App() {
     {!loading && (
       <div >
         <h2>Tasks:</h2>
+        <AddTask />
         <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>
       </div>
     )}
