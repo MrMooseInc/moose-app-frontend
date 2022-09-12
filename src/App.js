@@ -71,6 +71,19 @@ function App() {
       )
   }
 
+  const addTask = async (task) => {
+    const res = await fetch(`${URL}/tasks`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+});
+    const newTask = await res.json()
+    console.log(task);
+    setData([...data, newTask])
+  }
+
   const deleteTask = async (id) => {
     const res = await fetch(`${URL}/tasks/${id}/`, {
       method: 'DELETE'
@@ -90,7 +103,7 @@ function App() {
     {!loading && (
       <div >
         <h2>Tasks:</h2>
-        <AddTask />
+        <AddTask onAdd={addTask}/>
         <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>
       </div>
     )}
