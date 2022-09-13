@@ -53,6 +53,7 @@ const AddTask = ({ onAdd }) => {
             </Form>
           </Card.Body>
         </Card>
+        <br />
       </Container>
     </div>
   );

@@ -1,8 +1,12 @@
+import { Container } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
-const FrenchiePicture = ({picture}) => {
+const FrenchiePicture = ({ picture }) => {
   return (
-    <div><img alt="A Frenchie" src={`${picture}`} ></img></div>
-  )
-}
+    <Container>
+      <Image className="img-thumbnail float-center" alt="A Frenchie" src={`${picture}`} rounded></Image>
+    </Container>
+  );
+};
 
-export default FrenchiePicture
+export default FrenchiePicture;

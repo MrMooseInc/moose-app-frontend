@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import Header from './Components/Header.js';
 import Tasks from './Components/Tasks.js'
 import FrenchiePicture from './Components/FrenchiePicture.js'
 import Task from './Components/Task.js';
@@ -10,6 +11,7 @@ function App() {
   const [picture, setPicture] = useState([])
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
+  const [showAddTask, setShowAddTask] = useState(false)
   const URL = process.env.REACT_APP_REST_URL
 
   useEffect(() => {
@@ -102,9 +104,11 @@ function App() {
     {loading && <div>Loading</div>}
     {!loading && (
       <div >
-        <h2>Tasks:</h2>
-        <AddTask onAdd={addTask}/>
-        <Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>
+        <Header 
+          onAdd={() => setShowAddTask(!showAddTask)} 
+          showAdd={showAddTask}/>
+        {showAddTask && <AddTask onAdd={addTask} showAdd={showAddTask}/>}
+       {!showAddTask &&<Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>}
       </div>
     )}
     <FrenchiePicture picture={picture} />
