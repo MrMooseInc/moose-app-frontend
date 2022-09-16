@@ -44,7 +44,7 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
           </div>
           <div>
             <Button
-              variant={task.doses_given <= 0 ? "oiutline-info" : "info"}
+              variant={task.doses_given <= 0 ? "outline-info" : "info"}
               size="lg"
               onClick={() => onRemoveDose(task.id)}
               disabled={task.doses_given <= 0}
