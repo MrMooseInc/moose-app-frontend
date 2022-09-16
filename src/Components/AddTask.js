@@ -48,7 +48,7 @@ const AddTask = ({ onAdd }) => {
                 />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit
+                Save Task
               </Button>
             </Form>
           </Card.Body>
