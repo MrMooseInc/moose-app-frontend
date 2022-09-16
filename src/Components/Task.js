@@ -2,14 +2,22 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { XLg } from "react-bootstrap-icons";
 
+const allDosesComplete = (task) => {
+  return task.doses_given >= task.doses_required
+}
+
 const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
   return (
     <>
-      <Card key={task.id}>
+      <Card
+        key={task.id}
+        bg= {allDosesComplete(task) ? "secondary" : ""}
+        
+      >
         <Card.Header>
           {task.name}
           <Button
-            className="float-end"
+            className="float-end "
             variant="outline-danger"
             size="sm"
             onClick={() => onDeleteTask(task.id)}
@@ -27,13 +35,15 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
             variant="primary"
             size="lg"
             onClick={() => onAddDose(task.id)}
+            disabled={allDosesComplete(task)}
           >
             Add Dose
           </Button>{" "}
           <Button
-            variant="secondary"
+            variant="info"
             size="md"
             onClick={() => onRemoveDose(task.id)}
+            disabled={task.doses_given <= 0}
           >
             Remove Dose
           </Button>
