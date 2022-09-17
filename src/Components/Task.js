@@ -29,7 +29,7 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
         </Card.Header>
         <Card.Body>
           <Card.Text>
-            Doses Required: {task.doses_required}
+            {allDosesComplete(task) ? "Daily Doses Completed!!!" : `Daily Doses left: ${task.doses_required - task.doses_given}`}
           </Card.Text>
           <div className="mb-2">
             <Button
