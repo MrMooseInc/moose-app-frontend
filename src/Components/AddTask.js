@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, showAdd }) => {
   const [name, setName] = useState("");
   const [doses_required, setDoses] = useState("");
 
@@ -19,6 +19,7 @@ const AddTask = ({ onAdd }) => {
     onAdd({ name, doses_required })
     setName('')
     setDoses('')
+    showAdd()
   }
 
   return (

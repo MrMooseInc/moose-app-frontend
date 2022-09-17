@@ -105,17 +105,30 @@ function App() {
 
   return (
     <div>
-    {loading && <div>Loading</div>}
-    {!loading && (
-      <div >
-        <Header 
-          onAdd={() => setShowAddTask(!showAddTask)} 
-          showAdd={showAddTask}/>
-        {showAddTask && <AddTask onAdd={addTask} showAdd={showAddTask}/>}
-       {!showAddTask &&<Tasks data={data} onAddDose={addDose} onRemoveDose={removeDose} onDeleteTask={deleteTask}/>}
-      </div>
-    )}
-    <FrenchiePicture picture={picture} />
+      {loading && <div>Loading</div>}
+      {!loading && (
+        <div>
+          <Header
+            onAdd={() => setShowAddTask(!showAddTask)}
+            showAdd={showAddTask}
+          />
+          {showAddTask && (
+            <AddTask
+              onAdd={addTask}
+              showAdd={() => setShowAddTask(!showAddTask)}
+            />
+          )}
+          {!showAddTask && (
+            <Tasks
+              data={data}
+              onAddDose={addDose}
+              onRemoveDose={removeDose}
+              onDeleteTask={deleteTask}
+            />
+          )}
+        </div>
+      )}
+      <FrenchiePicture picture={picture} />
     </div>
   );
 }
