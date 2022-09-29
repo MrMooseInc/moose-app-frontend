@@ -7,12 +7,13 @@ import {
   CaretDown,
   CaretDownFill,
 } from "react-bootstrap-icons";
+import EditTask from './EditTask.js';
 
 const allDosesComplete = (task) => {
   return task.doses_given >= task.doses_required;
 };
 
-const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
+const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask, onEdit }) => {
   return (
     <>
       <Card key={task.id} bg={allDosesComplete(task) ? "secondary" : ""}>
@@ -28,9 +29,12 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
           </Button>
         </Card.Header>
         <Card.Body>
+        <EditTask task={task} onEdit={onEdit} className="float-end"/>
+          <div className="float-start">
           <Card.Text>
-            {allDosesComplete(task) ? "Daily Doses Completed!!!" : `Daily Doses left: ${task.doses_required - task.doses_given}`}
+            <span>{allDosesComplete(task) ? "Daily Doses Completed!!!" : `Daily Doses left: ${task.doses_required - task.doses_given}`}</span>
           </Card.Text>
+      
           <div className="mb-2">
             <Button
               variant={allDosesComplete(task) ? "outline-primary" : "primary"}
@@ -51,6 +55,7 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask }) => {
             >
               {task.doses_given <= 0 ? <CaretDown /> : <CaretDownFill />}
             </Button>
+          </div>
           </div>
         </Card.Body>
       </Card>

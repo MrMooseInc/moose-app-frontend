@@ -6,6 +6,7 @@ import FrenchiePicture from './Components/FrenchiePicture.js'
 import Task from './Components/Task.js';
 import AddTask from './Components/AddTask.js';
 
+
 function App() {
 
   const [picture, setPicture] = useState([])
@@ -94,6 +95,27 @@ function App() {
     setData([...data, newTask]);
   };
 
+  const editTask = async (task, id) => {
+    console.log(task, id);
+    const res = await fetch(`${URL}/tasks/${id}/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+    const newTask = await res.json();
+    console.log(newTask);
+    setData(
+      data.map((task) =>
+        task.id === id
+          ? { ...task, name: newTask.task.name, doses_required: newTask.task.doses_required }
+          : task
+      )
+    );
+    };
+  
+
   const deleteTask = async (id) => {
     const res = await fetch(`${URL}/tasks/${id}/`, {
       method: "DELETE",
@@ -124,6 +146,7 @@ function App() {
               onAddDose={addDose}
               onRemoveDose={removeDose}
               onDeleteTask={deleteTask}
+              onEdit={editTask}
             />
           )}
         </div>
