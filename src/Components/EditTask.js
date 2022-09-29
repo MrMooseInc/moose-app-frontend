@@ -43,7 +43,7 @@ const EditTask = ({task, onEdit}) => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Enter task name"
+                placeholder={ task.name }
               />
             </Form.Group>
 
@@ -53,7 +53,7 @@ const EditTask = ({task, onEdit}) => {
                 type="number"
                 value={doses_required}
                 onChange={(e) => setDoses(e.target.valueAsNumber)}
-                placeholder="Enter doses required"
+                placeholder={ task.doses_required }
               />
             </Form.Group>
           </Form>
