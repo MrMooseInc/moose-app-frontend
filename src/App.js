@@ -127,7 +127,22 @@ function App() {
 
   return (
     <div>
-      {loading && <div>Loading</div>}
+      {loading && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "200px",
+            height: "200px",
+            marginLeft: "-100px",
+            marginTop: "-100px",
+          }}
+        >
+          <h1 style={{textAlign:'center'}}>Loadilng task tracker!</h1>
+          <img style={{animation:'rotation 1s infinite linear'}} src={process.env.PUBLIC_URL + "apple-touch-icon.png"}></img>
+        </div>
+      )}
       {!loading && (
         <div>
           <Header
@@ -149,9 +164,9 @@ function App() {
               onEdit={editTask}
             />
           )}
+          <FrenchiePicture picture={picture} />
         </div>
       )}
-      <FrenchiePicture picture={picture} />
     </div>
   );
 }
