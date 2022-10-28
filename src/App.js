@@ -139,7 +139,7 @@ function App() {
             marginTop: "-100px",
           }}
         >
-          <h1 style={{textAlign:'center'}}>Loadilng task tracker!</h1>
+          <h1 style={{textAlign:'center'}}>Loading task tracker!</h1>
           <img style={{animation:'rotation 1s infinite linear'}} src={process.env.PUBLIC_URL + "apple-touch-icon.png"}></img>
         </div>
       )}
