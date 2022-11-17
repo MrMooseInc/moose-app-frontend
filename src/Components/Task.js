@@ -33,7 +33,7 @@ const Task = ({ task, onAddDose, onRemoveDose, onDeleteTask, onEdit }) => {
           <div className="float-start">
           <Card.Text>
             <span>{allDosesComplete(task) ? "Daily Doses Completed!!!" : `Daily Doses left: ${task.doses_required - task.doses_given}`}</span>
-          </Card.Text>
+          </Card.Text>  
       
           <div className="mb-2">
             <Button
