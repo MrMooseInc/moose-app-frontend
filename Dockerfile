@@ -1,5 +1,7 @@
 FROM node:17-alpine
 
+RUN npm install -g nodemon 
+
 WORKDIR /moose-app-frontend
 
 COPY package.json .
@@ -10,4 +12,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["node", "server.js"]
+CMD ["npm", "run", "dev"]
