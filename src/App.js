@@ -23,7 +23,7 @@ function App() {
         const picFromDogAPI = await getPicture();
         setPicture(picFromDogAPI);
         console.log(data);
-        setData([response]);
+        setData(response);
       } catch (error) {
         console.error(error.message);
       }
