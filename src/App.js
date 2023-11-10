@@ -45,12 +45,7 @@ function App() {
   };
 
   const addDose = async (id) => {
-    const res = await axios(`${URL}/tasks/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(Task),
+    const res = await axios.patch(`${URL}/tasks/${id}`, {
     });
 
     const dose_data = await res.json();
