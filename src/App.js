@@ -45,7 +45,7 @@ function App() {
   };
 
   const addDose = async (id) => {
-    const res = await fetch(`${URL}/tasks/${id}`, {
+    const res = await axios(`${URL}/tasks/${id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
